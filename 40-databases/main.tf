@@ -27,14 +27,15 @@ resource "terraform_data" "bootstrap" {
 
 # Copy a directory (trailing slash behavior like rsync)
   provisioner "file" {
-    source      = "bootstrap.sh",
+    source      = "bootstrap.sh"
     destination = "/tmp/bootstrap.sh"
   }
 
 
   provisioner "remote-exec" {
     inline = [
-        "chmod +x /tmp/bootstrap.sh"
+        "chmod +x /tmp/bootstrap.sh",
         "sudo sh /tmp/bootstrap.sh"
     ]
+  }
 }
